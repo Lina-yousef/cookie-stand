@@ -1,0 +1,18 @@
+header { background-color: rgb(238, 151, 90) ;
+    top: 0%;
+    text-align: center;
+    position: sticky;
+
+}
+
+footer{
+    background-color: rgb(238, 151, 90) ;
+    bottom: 0%;
+    text-align: center;
+    position: sticky;
+}
+
+body{
+    width: 100%;
+    height: 100%;   
+}
