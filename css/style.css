@@ -2,7 +2,7 @@ header { background-color: rgb(238, 151, 90) ;
     top: 0%;
     text-align: center;
     position: sticky;
-
+    bottom:0%
 }
 
 footer{
@@ -15,4 +15,8 @@ footer{
 body{
     width: 100%;
     height: 100%;   
+}
+#imgStyle{
+    widows: 25% ;
+    height: 25% ;
 }
