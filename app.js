@@ -50,25 +50,48 @@ Branch.prototype.calculateCookiePerHour = function () {
   }
 }
 
+//////  constructor the table as a function 
+var tableDiv;
+var locationTable;
 
+function createTable() {
+var tableDiv = document.getElementById('tableBranch');
+var locationTable = document.createElement('table');///////////////
+tableDiv.appendChild(locationTable);
+}
+createTable();
+createHeader();
 
+//////  create and append  header  function
+function createHeader() {
+ 
+  /// create row
+  var headerRow = document.createElement('tr'); /////
+  locationTable.appendChild(headerRow);
 
+  /// create cells
+  var emptyHeader = document.createElement('th');////
+  headerRow.appendChild(emptyHeader);
+  //emptyHeader.textContent = 'emptycell';
 
-//////  constructor method to render table 
-var tableBranch = document.getElementById('tableBranch');
+  var hoursHeader ;
+  for (i = 0; i < workHour.length; i++) {
 
-function renderRow() {
+    hoursHeader = document.createElement('th');////
+    tableRow.appendChild(hoursHeader);
+    headerRow.textContent = workHour[i]
+  }
+  var dailyTotal =document.createElement('th');
+  headerRow.appendChild(dailyTotal);
+  dailyTotal.textContent = 'Daily Location Total';/////
+}
 
-  Branch.prototype.renderRow = function () {
+ render();
 
-    var locationRow = document.createElement('tr');
-    tableBranch.appendChild(locationRow);
+  Branch.prototype.render= function () {
 
-    var shopName = document.createElement('th');
-    locationRow.appendChild(shopName);
-    shopName.textContent=this.locations;
-
-
+    var locationRow = document.createElement('tr');//////
+    locationTable.appendChild(locationRow);
 
     var nameCell = document.createElement('td');
     locationRow.appendChild(nameCell);
@@ -76,62 +99,25 @@ function renderRow() {
 
     var dataCell;
     for (i = 0; i < this.calculateCookiePerHour.length; i++) {
-      dataCell = document.createElement('td');
+      dataCell = document.createElement('td');///////
       dataCell.textContent = this.calculateCookiePerHour[i];
-      tableBranch.appendChild(dataCell);
+      locationRow.appendChild(dataCell);
     }
-    var totalCell = document.createElement('td');
+    var totalCell = document.createElement('td');//////////
     locationRow.appendChild = (totalCell);
     totalCell.textContent = this.totalCookie;
   }
 
-  // // create and append Tokyo row for the table 
-  // var tokyoRow = document.createElement('tr');
-  // tableBranch.appendChild(tokyoRow);
+  createFooter();
 
-  // // create and append Dubai row for the table 
-  // var dubaiRow = document.createElement('tr');
-  // tableBranch.appendChild(dubaiRow);
-
-  // // create and append Paris row for the table 
-  // var parisRow = document.createElement('tr');
-  // tableBranch.appendChild(parisRow);
-
-  // // create and append Lima row for the table 
-  // var limaRow = document.createElement('tr');
-  // tableBranch.appendChild(limaRow);
-}
-
-//////  create and append  header  function
-function Header() {
-  // get and append the table 
-    // create and append table row for the table 
-  var tableRow = document.createElement('tr');
-  tableBranch.appendChild(tableRow);
-
-  var emptyHeader = document.createElement('th');
-  tableRow.appendChild(emptyHeader);
-  emptyHeader.textContent = 'emptycell';
-
-  for (i = 0; i < workHour.length; i++) {
-
-    var tableHeader = document.createElement('th');
-    tableRow.appendChild(tableHeader);
-
-    tableHeader.textContent = workHour[i]
-  }
-  tableHeader.textContent = 'Daily Location Total';
-
-
-  /////// create render footer function 
-}
-function  Footer () {
+  /////// create footer function 
+function  createFooter () {
     // create and append Total row for the table 
     var totalRow = document.createElement('tr');
     tableBranch.appendChild(totalRow);
-    totalRow.textContent='Total';
+    totalRow.textContent='Totals';
 
-    var columnTotal;
+    var columnTotal=[];
     for(i=0 ; i< workHour.length ;i++){
        columnTotal=document.createElement('td');
        totalRow.appendChild=(columnTotal);
@@ -142,17 +128,37 @@ function  Footer () {
 
 ////// create objects for the Branch Constructor
 
-var seattle= new Branch('Seattle', 23, 65, 6.3);
+//// Seattle
+var seattle = new Branch('Seattle', 23, 65, 6.3);
+seattle.calculateCustPerHour();
+seattle.calculateCookiePerHour();
+seattle.render();
+console.log(seattle);
+
+////Tokyo
 var tokyo = new Branch('Tokyo', 3, 24, 1.2);
+tokyo.calculateCustPerHour();
+tokyo.calculateCookiePerHour();
+tokyo.render();
+console.log(tokyo);
+
+//// Dubai 
 var dubai = new Branch('Dubai', 11, 38, 3.7);
+dubai.calculateCustPerHour();
+dubai.calculateCookiePerHour();
+dubai.render();
+console.log(dubai);
+
+//// Paris
 var paris = new Branch('Paris', 20, 38, 2.3);
+paris.calculateCustPerHour();
+paris.calculateCookiePerHour();
+paris.render();
+console.log(paris);
+
+////Lima
 var lima = new Branch('Lima', 2, 16, 4.6);
-
-
-/////// calling 
-for(var i=0 ; i <locations.length ; i++ ){
-locations[i].calculateCustPerHour();
-locations[i].calculateCookiePerHour();
-locations[i].renderRow();
-
-console.log(locations)}
+lima.calculateCustPerHour();
+lima.calculateCookiePerHour();
+lima.render();
+console.log(lima);

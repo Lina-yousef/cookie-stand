@@ -20,3 +20,27 @@ body{
     widows: 25% ;
     height: 25% ;
 }
+
+.imgSec img {
+    display: inline-block;
+    padding: 14px;
+    width: 350px;
+    height: 250px;
+}
+
+td{
+    border: 3px brown;
+
+}
+table{
+    border-collapse:collapse;
+}
+ulStyle{
+    display: inline-block;
+    text-align: center;
+}
+.liStyle{
+    padding: 14px;
+    float: right;
+    
+}
