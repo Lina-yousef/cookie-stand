@@ -205,3 +205,26 @@ for (var i = 0; i < workHour.length; i++) {
 console.log(totalCell);
 console.log(arr);
  }
+
+
+ //// Form event
+
+//  var locationForm =document.getElementById('locationForm');
+
+ locationForm = addEventListener('submit' , submitter);
+
+ function submitter(event) {
+  event.preventDefault();
+
+  var newName=event.target.nameField.value;
+  var newMin = event.target.minField.value;
+  var newMax=event.target.maxField.value;
+  var newAvg=event.target.avgField.value;
+
+  var newLocation =new Branch (newName ,newMin , newMax ,newAvg);
+
+  console.log(event);
+
+ }
+
+
