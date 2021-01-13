@@ -17,6 +17,8 @@ console.log(workHour);
 var randomCust = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+var locationsArr = [];
+
 
 ////////constructor function for all branches 
 function Branch(name, minCustPerHour, maxCustPerHour, avgCookiePerHour) {
@@ -24,12 +26,11 @@ function Branch(name, minCustPerHour, maxCustPerHour, avgCookiePerHour) {
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiePerHour = avgCookiePerHour;
+
   this.avgCustPerHour = [];
   this.avgCookiePurchased = [];
 
-  this.renderRow = [];
-
-  this.totalCookie = 0;
+  locationsArr.push(this)
 }
 
 //////calculateCustPerHour  function
@@ -43,87 +44,89 @@ Branch.prototype.calculateCustPerHour = function () {
 ///////calculateCookiePerHour function 
 Branch.prototype.calculateCookiePerHour = function () {
   for (var i = 0; i < workHour.length; i++) {
-    this.avgCookiePurchased.push(Math.floor(this.avgCustPerHour[i] * this.avgCookiesPerHour));
-
-    this.totalCookie = this.totalCookie + this.avgCookiePurchased[i];
-    console.log('total', this.totalCookie);
+    this.avgCookiePurchased.push(Math.floor(this.avgCustPerHour[i] * this.avgCookiePerHour));
   }
+
 }
+
 
 //////  constructor the table as a function 
 var tableDiv;
 var locationTable;
 
 function createTable() {
-var tableDiv = document.getElementById('tableBranch');
-var locationTable = document.createElement('table');///////////////
-tableDiv.appendChild(locationTable);
+  tableDiv = document.getElementById('tableBranch');
+  locationTable = document.createElement('table');///////////////
+  tableDiv.appendChild(locationTable);
+}
+
+//////  create and append  header  function
+function createHeader() {
+
+  /// create row
+  var headerRow = document.createElement('tr'); /////
+  locationTable.appendChild(headerRow);
+  console.log('table', locationTable);  /// create cells
+  var emptyHeader = document.createElement('th');////
+  headerRow.appendChild(emptyHeader);
+  emptyHeader.textContent = '    ';
+
+
+  for (var i = 0; i < workHour.length; i++) {
+    console.log(workHour[i]);
+    var hoursHeader = document.createElement('th');////
+
+    hoursHeader.textContent = workHour[i];
+    headerRow.appendChild(hoursHeader);
+  }
+  var dailyTotal = document.createElement('th');
+  headerRow.appendChild(dailyTotal);
+  dailyTotal.textContent = 'Daily Location Total';/////
 }
 createTable();
 createHeader();
 
-//////  create and append  header  function
-function createHeader() {
- 
-  /// create row
-  var headerRow = document.createElement('tr'); /////
-  locationTable.appendChild(headerRow);
 
-  /// create cells
-  var emptyHeader = document.createElement('th');////
-  headerRow.appendChild(emptyHeader);
-  //emptyHeader.textContent = 'emptycell';
+Branch.prototype.render = function () {
 
-  var hoursHeader ;
-  for (i = 0; i < workHour.length; i++) {
+  var locationRow = document.createElement('tr');//////
+  locationTable.appendChild(locationRow);
 
-    hoursHeader = document.createElement('th');////
-    tableRow.appendChild(hoursHeader);
-    headerRow.textContent = workHour[i]
+  var nameCell = document.createElement('td');/////
+  locationRow.appendChild(nameCell);
+  nameCell.textContent = this.name;
+
+
+  var locationTotal = 0;
+  for (var i = 0; i < this.avgCookiePurchased.length; i++) {
+    var dataCell = document.createElement('td');///////
+    dataCell.textContent = this.avgCookiePurchased[i];
+    locationRow.appendChild(dataCell);
+    locationTotal = locationTotal + this.avgCookiePurchased[i];
+
   }
-  var dailyTotal =document.createElement('th');
-  headerRow.appendChild(dailyTotal);
-  dailyTotal.textContent = 'Daily Location Total';/////
+  var totalCell = document.createElement('td');//////////
+  locationRow.appendChild(totalCell);
+  totalCell.textContent = locationTotal;
 }
 
- render();
+// createFooter();
 
-  Branch.prototype.render= function () {
+// /////// create footer function 
+// function createFooter() {
+//   // create and append Total row for the table 
+//   var totalRow = document.createElement('tr');
+//   tableBranch.appendChild(totalRow);
+//   totalRow.textContent = 'Totals';
 
-    var locationRow = document.createElement('tr');//////
-    locationTable.appendChild(locationRow);
+//   var columnTotal = [];
+//   for (i = 0; i < workHour.length; i++) {
+//     columnTotal = document.createElement('td');
+//     totalRow.appendChild = (columnTotal);
 
-    var nameCell = document.createElement('td');
-    locationRow.appendChild(nameCell);
-    nameCell.textContent = this.name;
-
-    var dataCell;
-    for (i = 0; i < this.calculateCookiePerHour.length; i++) {
-      dataCell = document.createElement('td');///////
-      dataCell.textContent = this.calculateCookiePerHour[i];
-      locationRow.appendChild(dataCell);
-    }
-    var totalCell = document.createElement('td');//////////
-    locationRow.appendChild = (totalCell);
-    totalCell.textContent = this.totalCookie;
-  }
-
-  createFooter();
-
-  /////// create footer function 
-function  createFooter () {
-    // create and append Total row for the table 
-    var totalRow = document.createElement('tr');
-    tableBranch.appendChild(totalRow);
-    totalRow.textContent='Totals';
-
-    var columnTotal=[];
-    for(i=0 ; i< workHour.length ;i++){
-       columnTotal=document.createElement('td');
-       totalRow.appendChild=(columnTotal);
-       columnTotal.textContent=this.calculateCookiePerHour;
-    }
-  }
+//     columnTotal.textContent = calculateCookiePerHour[i];
+//   }
+// }
 
 
 ////// create objects for the Branch Constructor
@@ -132,7 +135,7 @@ function  createFooter () {
 var seattle = new Branch('Seattle', 23, 65, 6.3);
 seattle.calculateCustPerHour();
 seattle.calculateCookiePerHour();
-seattle.render();
+//attle.render();
 console.log(seattle);
 
 ////Tokyo
@@ -162,3 +165,43 @@ lima.calculateCustPerHour();
 lima.calculateCookiePerHour();
 lima.render();
 console.log(lima);
+
+console.log('LocationsArr' + locationsArr);
+
+
+ /////// create footer function 
+createFooter();
+ function createFooter() {
+     // create and append Total row for the table 
+
+   var footerRow = document.createElement('tr');///////
+   locationTable.appendChild(footerRow); 
+  
+   ///create cells 
+  var totalCell = document.createElement('th');/////
+  footerRow.appendChild(totalCell);
+  totalCell.textContent = 'Total';
+
+var arr = [];
+var totalOfTotalCounter = 0;
+console.log(locationsArr[0].avgCookiePurchased)
+for (var i = 0; i < workHour.length; i++) {
+  var avr = 0;
+  for (var z = 0; z < locationsArr.length; z++) {
+    var totalHour =document.createElement('th');
+    
+    avr = avr + locationsArr[z].avgCookiePurchased[i];
+    totalOfTotalCounter += avr;
+  }
+  arr.push(avr);
+  footerRow.appendChild(totalHour);
+  totalHour.textContent=arr[i];
+}
+
+  var totalOfTotal = document.createElement('th');
+  footerRow.appendChild(totalOfTotal);
+  totalOfTotal.textContent=totalOfTotalCounter;
+
+console.log(totalCell);
+console.log(arr);
+ }
