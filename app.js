@@ -223,6 +223,10 @@ console.log(arr);
 
   var newLocation =new Branch (newName ,newMin , newMax ,newAvg);
 
+  newLocation.calculateCustPerHour();
+  newLocation.calculateCookiePerHour();
+  newLocation.render();
+  tableDiv.removechild(totalRow);
   console.log(event);
 
  }
