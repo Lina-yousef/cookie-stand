@@ -206,10 +206,9 @@ console.log(totalCell);
 console.log(arr);
  }
 
-
  //// Form event
 
-//  var locationForm =document.getElementById('locationForm');
+  var locationForm =document.getElementById('locationForm');
 
  locationForm = addEventListener('submit' , submitter);
 
@@ -223,12 +222,21 @@ console.log(arr);
 
   var newLocation =new Branch (newName ,newMin , newMax ,newAvg);
 
-  newLocation.calculateCustPerHour();
-  newLocation.calculateCookiePerHour();
-  newLocation.render();
-  tableDiv.removechild(totalRow);
+locationTable.innerHTML='';
+createHeader();
+ createTable();
+ 
+for (var i=0 ; i<locationsArr.length ; i++){
+ 
+  locationsArr[i].calculateCustPerHour=[];
+  locationsArr[i].calculateCookiePerHour=[];
+
+  locationsArr[i].render();
+
+  tableDiv.appendChild(totalHour);
   console.log(event);
+}
 
+createFooter();
+tableDiv.appendChild(totalHour);
  }
-
-
