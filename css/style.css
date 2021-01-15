@@ -1,20 +1,53 @@
-header { background-color: rgb(238, 151, 90) ;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@200&display=swap');
+
+
+/* Header */
+header { 
+    background-color: rgb(238, 151, 90) ;
     top: 0%;
     text-align: center;
     position: sticky;
     bottom:0%
+    
+}
+header img {
+    width: 25%;
+    height: 25%;
+    left: 5%;
 }
 
-footer{
-    background-color: rgb(238, 151, 90) ;
-    bottom: 0%;
-    text-align: center;
-    position: sticky;
+header h2{
+    position:absolute;
+    width: 200px;
+    left:1.5% ;
+    top: 1%;
 }
+header nav{
+    position: absolute;
+    right:3% ;
+    top: 9%;  
+}
+header ul{
+    list-style-type: none;
+}
+
+header h4{
+    position:absolute;
+    width: 200px;
+    left:1.5% ;
+    top: 30%;
+    font-family: 'Fraunces', serif
+}
+
+
+/* Main */
 
 body{
     width: 100%;
     height: 100%;   
+}
+main{
+    background: hsl(42, 100%, 92%);
 }
 #imgStyle{
     widows: 25% ;
@@ -29,12 +62,23 @@ body{
 }
 
 td{
-    border: 3px brown;
+    border: 3px rgb(168, 55, 55);
 
 }
 table{
+    margin: 25px;
     border-collapse:collapse;
+    border: solid tomato;
+    width: 40%;
+
 }
+
+  th, td {
+    background-color: #849157;
+    color: white;
+    padding: 15px;
+  }
+
 ulStyle{
     display: inline-block;
     text-align: center;
@@ -43,4 +87,12 @@ ulStyle{
     padding: 14px;
     float: right;
     
+}
+
+/* Footer */
+footer{
+    background-color: rgb(238, 151, 90) ;
+    bottom: 0%;
+    text-align: center;
+    position: sticky;
 }
