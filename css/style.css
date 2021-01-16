@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@200&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,600&display=swap');
 
 /* Header */
 header { 
@@ -32,11 +33,12 @@ header ul{
 }
 
 header h4{
+    background: rgb(167, 189, 70);
     position:absolute;
     width: 200px;
     left:1.5% ;
     top: 30%;
-    font-family: 'Fraunces', serif
+    font-family: 'Zilla Slab Highlight', cursive;
 }
 
 
@@ -78,6 +80,9 @@ table{
     color: white;
     padding: 15px;
   }
+td{
+    font-family: 'Fraunces', serif;
+}
 
 ulStyle{
     display: inline-block;
@@ -96,3 +101,18 @@ footer{
     text-align: center;
     position: sticky;
 }
+form {
+    display: inline-block;
+    width: 27%;
+}
+main nav {
+    margin: 25px;
+    border-collapse:collapse;
+    border: solid tomato;
+    width: 10%;
+    text-align: center;  
+}
+    main li{
+        list-style-type: none;
+        text-align:left ;
+    }
